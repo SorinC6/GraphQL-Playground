@@ -1,0 +1,28 @@
+{
+  "name": "GraphQL-Playground",
+  "version": "1.0.0",
+  "description": "Building a GraphQL Server from Scratch using Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SorinC6/GraphQL-Playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SorinC6/GraphQL-Playground/issues"
+  },
+  "homepage": "https://github.com/SorinC6/GraphQL-Playground#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.4.2",
+    "lodash": "^4.17.14",
+    "nodemon": "^1.19.1"
+  }
+}
