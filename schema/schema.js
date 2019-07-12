@@ -1,7 +1,7 @@
 const graphql = require("graphql");
 const _ = require("lodash");
 const book = require("../models/bookModel");
-const authot = require("../models/authorModel");
+const Author = require("../models/authorModel");
 
 const {
   GraphQLObjectType,
@@ -13,20 +13,20 @@ const {
 } = graphql;
 
 //dummy data
-const books = [
-  { id: "1", name: "Name of the Elephant", genre: "Fantasy", authorId: "1" },
-  { id: "2", name: "The Last Jedi", genre: "Sf", authorId: "1" },
-  { id: "3", name: "The Last Hero", genre: "Action", authorId: "2" },
-  { id: "4", name: "Revange on Kan", genre: "Action", authorId: "2" },
-  { id: "5", name: "A new Hope", genre: "Sf", authorId: "3" },
-  { id: "6", name: "The Empire Strike Back", genre: "Sf", authorId: "2" }
-];
+// const books = [
+//   { id: "1", name: "Name of the Elephant", genre: "Fantasy", authorId: "1" },
+//   { id: "2", name: "The Last Jedi", genre: "Sf", authorId: "1" },
+//   { id: "3", name: "The Last Hero", genre: "Action", authorId: "2" },
+//   { id: "4", name: "Revange on Kan", genre: "Action", authorId: "2" },
+//   { id: "5", name: "A new Hope", genre: "Sf", authorId: "3" },
+//   { id: "6", name: "The Empire Strike Back", genre: "Sf", authorId: "2" }
+// ];
 
-const authors = [
-  { id: "1", name: "Chis Sorin", age: 30 },
-  { id: "2", name: "Iuga Alin", age: 33 },
-  { id: "3", name: "Vlad Vasile", age: 40 }
-];
+// const authors = [
+//   { id: "1", name: "Chis Sorin", age: 30 },
+//   { id: "2", name: "Iuga Alin", age: 33 },
+//   { id: "3", name: "Vlad Vasile", age: 40 }
+// ];
 
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -93,4 +93,24 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-module.exports = new GraphQLSchema({ query: RootQuery });
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    addAuthor: {
+      type: AuthorType,
+      args: {
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt }
+      },
+      resolve(parent, args) {
+        let author = new Author({
+          name: args.name,
+          age: args.age
+        });
+        return author.save();
+      }
+    }
+  }
+});
+
+module.exports = new GraphQLSchema({ query: RootQuery, mutation: Mutation });
