@@ -1,7 +1,7 @@
 const express = require("express");
 const graphHTTP = require("express-graphql");
 const schema = require("./schema/schema");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -14,7 +14,7 @@ mongoose.connect(
 mongoose.connection.once("open", () => {
   console.log("Connected to Database Woop Woop");
 });
-
+// tutorial 17
 app.use(
   "/test",
   graphHTTP({
