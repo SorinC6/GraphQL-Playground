@@ -2,8 +2,12 @@ const express = require("express");
 const graphHTTP = require("express-graphql");
 const schema = require("./schema/schema");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
+
+//allow crosss origin request
+app.use(cors());
 
 // mongoDb connection string
 //mongodb+srv://sorin:test123@test-zjuzv.mongodb.net/test?retryWrites=true&w=majority
