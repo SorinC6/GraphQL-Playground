@@ -21,8 +21,14 @@ const AddBook = props => {
       });
     }
   };
+
+  const submitForm = e => {
+    e.preventDefault();
+    console.log(name, genre, authorId);
+  };
+
   return (
-    <form id="add-book">
+    <form id="add-book" onSubmit={submitForm}>
       <div className="field">
         <label>Book Name:</label>
         <input type="text" onChange={e => setName(e.target.value)} />
