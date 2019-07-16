@@ -10,9 +10,9 @@ const BookDetails = props => {
       return (
         <div>
           <h2>{book.name}</h2>
-          <p>{book.genre}</p>
-          <p>{book.author.name}</p>
-          <p>{book.author.age}</p>
+          <p>Genre: {book.genre}</p>
+          <p>Name: {book.author.name}</p>
+          <p>Age:{book.author.age}</p>
           <p>All books by this Author</p>
           <ul className="other-books">
             {book.author.books.map(item => {
@@ -26,7 +26,7 @@ const BookDetails = props => {
     }
   };
 
-  return <div>{displayBookDetail()}</div>;
+  return <div id="book-details">{displayBookDetail()}</div>;
 };
 
 export default graphql(getBookQuery, {
