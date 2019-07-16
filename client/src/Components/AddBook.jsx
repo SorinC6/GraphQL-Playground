@@ -8,7 +8,7 @@ const AddBook = props => {
   const [authorId, setAuthorId] = useState("");
 
   const displayAuthors = () => {
-    let data = props.data;
+    let data = props.getAuthorsQuery;
     if (data.loading) {
       return <option disabled>Loading authors...</option>;
     } else {
@@ -24,7 +24,14 @@ const AddBook = props => {
 
   const submitForm = e => {
     e.preventDefault();
-    console.log(name, genre, authorId);
+    //console.log(name, genre, authorId);
+    props.addBookMutation({
+      variables: {
+        name,
+        genre,
+        authorId
+      }
+    });
   };
 
   return (
